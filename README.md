@@ -1,3 +1,52 @@
+## Project Blogposts
+
+1. Setting up a Solidity / React Project
+2. Building & deploying the Contracts
+3. Building & connecting the Front-end to the contracts
+
+## Project dependencies
+
+Install Truffle globally
+Install Node
+Create an Infura Account & Project
+Install Metamask & fund with test ETH & LINK (Kovan network)
+
+## Project framework
+
+Chainlink VRF and Chainlink Keepers
+Next.js & react frontend
+
+## Dependencies
+
+dotenv
+chainlink
+
+## Making this project
+
+> npx creat-next-app
+> cd [name of project]
+> truffle init
+> (contracts) npm install dotenv @truffle/hdwallet-provider @chainlink/contracts
+> (frontend) npm install web3
+> (testing) npm install mocha
+> make .env file
+> truffle.config setup
+> Fund your wallet (contract deployer) with test eth and link (link to rinkeby and kovan faucets)
+> create your contracts
+> create your migration file in /migrations/2_deploy_migrations.js
+> compile your contract > truffle compile
+> Deploy your contracts > truffle migrate --network kovan
+> Put deployed address in .env file
+> Register with Chainlink Keeper Network (https://docs.chain.link/docs/chainlink-keepers/register-upkeep/)
+> Frontend config web3 provider -> create web3.js under pages/api
+> Create ChainlinkKeeper.js under pages/api
+
+## Running this project
+
+install dependencies > npm install
+
+## Next.js documentation
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
