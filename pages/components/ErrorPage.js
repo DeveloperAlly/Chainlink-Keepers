@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
 import Layout from "../components/Layout";
 import { Header, Button, Icon, Label } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 const ErrorPage = () => {
   const router = useRouter();

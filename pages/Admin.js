@@ -14,6 +14,7 @@ import RaffleInterface from "./api/contracts/RaffleVRFKeeperInterface";
 import StatusMessage from "./components/StatusMessage";
 import RaffleInfo from "./components/Raffle/RaffleInfo";
 import { useRouter } from "next/router";
+import "semantic-ui-css/semantic.min.css";
 
 const INITIAL_TRANSACTION_STATE = {
   loading: "",
