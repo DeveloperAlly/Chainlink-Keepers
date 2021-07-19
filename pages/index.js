@@ -5,6 +5,7 @@ import Raffle from "./components/Raffle/Raffle";
 // import RaffleVRFKeeperInterface from "./api/contracts/RaffleVRFKeeperInterface";
 import RaffleInterface from "./api/contracts/RaffleVRFKeeperInterface";
 import "semantic-ui-css/semantic.min.css";
+import "semantic-ui-css/semantic.js";
 
 const Home = (props) => {
   //   console.log("Raffle", RaffleInterface);
