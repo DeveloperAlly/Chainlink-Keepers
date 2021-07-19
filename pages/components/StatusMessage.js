@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Message, Icon } from "semantic-ui-react";
 
 const StatusMessage = ({
-  status: { error, loading, warning, success },
+  status: { error = "", loading = "", warning = "", success = "" },
   ...props
 }) => {
   return (
