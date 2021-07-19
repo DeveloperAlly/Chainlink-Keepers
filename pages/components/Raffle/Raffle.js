@@ -36,7 +36,7 @@ const Raffle = ({ data, ...props }) => {
         <Divider />
         <Container>
           <Header as="h2"> Winners Board</Header>
-          {data.winnersRegistry.length > 0 ? (
+          {data && data.winnersRegistry && data.winnersRegistry.length > 0 ? (
             <RaffleWinnersList winnersRegistry={data.winnersRegistry} />
           ) : (
             <p>This is the first round!</p>

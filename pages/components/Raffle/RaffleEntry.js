@@ -108,80 +108,100 @@ const RaffleEntry = ({ data, transactionState, setTransactionState }) => {
       <Header as="h2">Enter the raffle!</Header>
       {/* convert cost to ether */}
       {/* <p>{data.entryCost} to enter</p> */}
-      <p>Max Entrants before draw: {data.maxEntrants} </p>
-      <Grid centered>
-        <Grid.Column width={3} />
-        <Grid.Column width={5}>
-          <List divided relaxed>
-            <Header>Entered Players</Header>
-            {data.playersEntered.length > 0 ? (
-              data.playersEntered.map((playerAddress, idx) => {
-                return renderPlayer(playerAddress, idx);
-              })
-            ) : (
-              <List.Item>No entrants yet - be the first!</List.Item>
-            )}
-          </List>
-        </Grid.Column>
-        <Grid.Column width={2} />
-        <Grid.Column width={6}>
-          {web3.currentProvider.host ? (
-            <Card>
-              <Card.Content>
-                <Image floated="right" size="mini" src="/chainlink-logo.png" />
-                <Card.Header>Connect a wallet! </Card.Header>
-                <Card.Meta>
-                  Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
-                </Card.Meta>
-                <Card.Description>
-                  You need to connect a wallet to enter this raffle!
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          ) : data.playersEntered.length >= data.maxEntrants ? (
-            <Card>
-              <Card.Content>
-                <Image floated="right" size="mini" src="/chainlink-logo.png" />
-                <Card.Header>Sorry! Entry Closed</Card.Header>
-                <Card.Meta>
-                  Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
-                </Card.Meta>
-                <Card.Description>
-                  Max number of players for this round already reached. Try next
-                  round!
-                </Card.Description>
-              </Card.Content>
-            </Card>
-          ) : (
-            <>
-              <Card
-                as="a"
-                onClick={onRaffleEnter}
-                disabled={Boolean(transactionState.loading)}
-              >
-                <Card.Content>
-                  <Image
-                    floated="right"
-                    size="mini"
-                    src="/chainlink-logo.png"
-                  />
-                  <Card.Header>Click to Enter!</Card.Header>
-                  <Card.Meta>
-                    Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
-                  </Card.Meta>
-                </Card.Content>
-              </Card>
-            </>
-          )}
-        </Grid.Column>
-      </Grid>
+      {data ? (
+        <>
+          <p>Max Entrants before draw: {data.maxEntrants} </p>
+          <Grid centered>
+            <Grid.Column width={3} />
+            <Grid.Column width={5}>
+              <List divided relaxed>
+                <Header>Entered Players</Header>
+                {data &&
+                data.playersEntered &&
+                data.playersEntered.length > 0 ? (
+                  data.playersEntered.map((playerAddress, idx) => {
+                    return renderPlayer(playerAddress, idx);
+                  })
+                ) : (
+                  <List.Item>No entrants yet - be the first!</List.Item>
+                )}
+              </List>
+            </Grid.Column>
+            <Grid.Column width={2} />
+            <Grid.Column width={6}>
+              {web3.currentProvider.host ? (
+                <Card>
+                  <Card.Content>
+                    <Image
+                      floated="right"
+                      size="mini"
+                      src="/chainlink-logo.png"
+                    />
+                    <Card.Header>Connect a wallet! </Card.Header>
+                    <Card.Meta>
+                      Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
+                    </Card.Meta>
+                    <Card.Description>
+                      You need to connect a wallet to enter this raffle!
+                    </Card.Description>
+                  </Card.Content>
+                </Card>
+              ) : data &&
+                data.playersEntered &&
+                data.playersEntered.length >= data.maxEntrants ? (
+                <Card>
+                  <Card.Content>
+                    <Image
+                      floated="right"
+                      size="mini"
+                      src="/chainlink-logo.png"
+                    />
+                    <Card.Header>Sorry! Entry Closed</Card.Header>
+                    <Card.Meta>
+                      Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
+                    </Card.Meta>
+                    <Card.Description>
+                      Max number of players for this round already reached. Try
+                      next round!
+                    </Card.Description>
+                  </Card.Content>
+                </Card>
+              ) : (
+                <>
+                  <Card
+                    as="a"
+                    onClick={onRaffleEnter}
+                    disabled={Boolean(transactionState.loading)}
+                  >
+                    <Card.Content>
+                      <Image
+                        floated="right"
+                        size="mini"
+                        src="/chainlink-logo.png"
+                      />
+                      <Card.Header>Click to Enter!</Card.Header>
+                      <Card.Meta>
+                        Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
+                      </Card.Meta>
+                    </Card.Content>
+                  </Card>
+                </>
+              )}
+            </Grid.Column>
+          </Grid>
+        </>
+      ) : (
+        <p>Loading</p>
+      )}
 
-      <Container style={{ marginTop: "20px" }}>
-        {JSON.stringify(transactionState) !==
-          JSON.stringify(INITIAL_TRANSACTION_STATE) && (
-          <StatusMessage status={transactionState} />
-        )}
-      </Container>
+      {transactionState && (
+        <Container style={{ marginTop: "20px" }}>
+          {JSON.stringify(transactionState) !==
+            JSON.stringify(INITIAL_TRANSACTION_STATE) && (
+            <StatusMessage status={transactionState} />
+          )}
+        </Container>
+      )}
     </div>
   );
 };

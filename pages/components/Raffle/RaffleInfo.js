@@ -58,7 +58,7 @@ const RaffleInfo = ({ data }) => {
     );
   };
 
-  return <>{renderRaffleInfo()}</>;
+  return <>{data ? renderRaffleInfo() : "Loading data.."}</>;
 };
 
 export default RaffleInfo;
