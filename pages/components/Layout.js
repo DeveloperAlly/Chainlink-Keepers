@@ -100,7 +100,7 @@ const Layout = ({ data, ...props }) => {
           </span>
         </a>
       </footer>
-      {/* <PriceMarquee /> */}
+      <PriceMarquee />
     </div>
   );
 };

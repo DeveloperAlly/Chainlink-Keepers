@@ -27,7 +27,7 @@ const ErrorPage = () => {
           onClick={() => router.push("/")}
         >
           {"Home    "}
-          <Icon name="home" color="white" />
+          <Icon name="home" />
         </Button>
         <p style={{ padding: "40px" }}>Try again or just enjoy this video!</p>
         <ReactPlayer

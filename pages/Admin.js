@@ -15,6 +15,7 @@ import StatusMessage from "./components/StatusMessage";
 import RaffleInfo from "./components/Raffle/RaffleInfo";
 import { useRouter } from "next/router";
 import "semantic-ui-css/semantic.min.css";
+import ErrorPage from "./components/ErrorPage";
 
 const INITIAL_TRANSACTION_STATE = {
   loading: "",
@@ -25,7 +26,6 @@ const INITIAL_TRANSACTION_STATE = {
 
 const Admin = (props) => {
   const router = useRouter();
-  console.log("admin props", props);
   const { Row, Body, Cell, HeaderCell } = Table;
   const [transactionState, setTransactionState] = useState(
     INITIAL_TRANSACTION_STATE
@@ -132,90 +132,108 @@ const Admin = (props) => {
   };
 
   return (
-    <Layout data={props}>
-      <Container textAlign="center">
-        <Header>Admin Functions </Header>
-        <Button
-          style={{ backgroundColor: "royalblue", color: "white" }}
-          icon
-          size="large"
-          onClick={() => router.push("/")}
-        >
-          {"Home    "}
-          <Icon name="home" color="white" />
-        </Button>
-        <Table celled>
-          <Table.Header>
-            <Row textalign="right">
-              <HeaderCell
-                width={10}
-                textAlign="left"
-                style={{ paddingLeft: "30px" }}
-              >
-                Action
-              </HeaderCell>
-              <HeaderCell width={6} textAlign="center">
-                Perform Action
-              </HeaderCell>
-            </Row>
-          </Table.Header>
-          <Body>
-            <Row>
-              <Cell textAlign="left" style={{ paddingLeft: "30px" }}>
-                Pick A Winner
-              </Cell>
-              <Cell textAlign="center">
-                <Button
-                  color="green"
-                  basic
-                  size="large"
-                  disabled={Boolean(transactionState.loading)} // don't allow more clicks if loading
-                  onClick={() => pickWinner()}
-                >
-                  Pick Winner
-                </Button>
-              </Cell>
-            </Row>
-            <Row>
-              <Cell textAlign="left" style={{ paddingLeft: "30px" }}>
-                Withdraw Link
-              </Cell>
-              <Cell textAlign="center">
-                <Button
-                  color="green"
-                  basic
-                  size="large"
-                  disabled={Boolean(transactionState.loading)} // don't allow more clicks if loading
-                  // onClick={() => onApprove(index)}
-                >
-                  Withdraw Link
-                </Button>
-              </Cell>
-            </Row>
-            <Row>
-              <Cell textAlign="left" style={{ paddingLeft: "30px" }}>
-                Set Entry Cost
-              </Cell>
-              <Cell textAlign="center">
-                <Input placeholder="Entry cost in Eth" labelPosition="right">
-                  <Label>ETH</Label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.001"
-                    value={entryCostInput}
-                    onChange={(event) => setEntryCostInput(event.target.value)}
-                  />
-                  <Button
-                    basic
-                    color="green"
-                    disabled={Boolean(transactionState.loading)}
-                    onClick={() => setEntryCost()}
-                  >
-                    Confirm
-                  </Button>
-                </Input>
-                {/* <Input
+    <>
+      {web3 &&
+      web3.currentProvider &&
+      web3.currentProvider.selectedAddress &&
+      props &&
+      props.manager &&
+      web3.currentProvider.selectedAddress.toLowerCase() ===
+        props.manager.toLowerCase() ? (
+        <Layout data={props}>
+          <Container textAlign="center">
+            <Header>Admin Functions </Header>
+            <Button
+              style={{
+                backgroundColor: "royalblue",
+                color: "white",
+                padding: "14px 24px",
+              }}
+              icon
+              size="large"
+              onClick={() => router.push("/")}
+            >
+              {"Home    "}
+              <Icon name="home" />
+            </Button>
+            <Container style={{ paddingTop: "3em" }}>
+              <Table celled>
+                <Table.Header>
+                  <Row textalign="right">
+                    <HeaderCell
+                      width={10}
+                      textAlign="left"
+                      style={{ paddingLeft: "30px" }}
+                    >
+                      Action
+                    </HeaderCell>
+                    <HeaderCell width={6} textAlign="center">
+                      Perform Action
+                    </HeaderCell>
+                  </Row>
+                </Table.Header>
+                <Body>
+                  <Row>
+                    <Cell textAlign="left" style={{ paddingLeft: "30px" }}>
+                      Pick A Winner
+                    </Cell>
+                    <Cell textAlign="center">
+                      <Button
+                        color="green"
+                        basic
+                        size="large"
+                        disabled={Boolean(transactionState.loading)} // don't allow more clicks if loading
+                        onClick={() => pickWinner()}
+                      >
+                        Pick Winner
+                      </Button>
+                    </Cell>
+                  </Row>
+                  <Row>
+                    <Cell textAlign="left" style={{ paddingLeft: "30px" }}>
+                      Withdraw Link
+                    </Cell>
+                    <Cell textAlign="center">
+                      <Button
+                        color="green"
+                        basic
+                        size="large"
+                        disabled={Boolean(transactionState.loading)} // don't allow more clicks if loading
+                        // onClick={() => onApprove(index)}
+                      >
+                        Withdraw Link
+                      </Button>
+                    </Cell>
+                  </Row>
+                  <Row>
+                    <Cell textAlign="left" style={{ paddingLeft: "30px" }}>
+                      Set Entry Cost
+                    </Cell>
+                    <Cell textAlign="center">
+                      <Input
+                        placeholder="Entry cost in Eth"
+                        labelPosition="right"
+                      >
+                        <Label>ETH</Label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.001"
+                          value={entryCostInput}
+                          onChange={(event) =>
+                            setEntryCostInput(event.target.value)
+                          }
+                        />
+                        <Button
+                          basic
+                          color="green"
+                          disabled={Boolean(transactionState.loading)}
+                          onClick={() => setEntryCost()}
+                        >
+                          Confirm
+                        </Button>
+                      </Input>
+                      {/* <Input
                   label={
                     { basic: true, content: "Eth" }
                     // <Button onClick={() => console.log("seteth")}>ETH</Button>
@@ -224,7 +242,7 @@ const Admin = (props) => {
                   placeholder="Enter entry cost..."
 
                 /> */}
-                {/* <Button
+                      {/* <Button
                   color="green"
                   basic
                   size="medium"
@@ -233,17 +251,22 @@ const Admin = (props) => {
                 >
                   C
                 </Button> */}
-              </Cell>
-            </Row>
-          </Body>
-        </Table>
-        {transactionState &&
-          JSON.stringify(transactionState) !==
-            JSON.stringify(INITIAL_TRANSACTION_STATE) && (
-            <StatusMessage status={transactionState} />
-          )}
-      </Container>
-    </Layout>
+                    </Cell>
+                  </Row>
+                </Body>
+              </Table>
+            </Container>
+            {transactionState &&
+              JSON.stringify(transactionState) !==
+                JSON.stringify(INITIAL_TRANSACTION_STATE) && (
+                <StatusMessage status={transactionState} />
+              )}
+          </Container>
+        </Layout>
+      ) : (
+        <ErrorPage />
+      )}
+    </>
   );
 };
 

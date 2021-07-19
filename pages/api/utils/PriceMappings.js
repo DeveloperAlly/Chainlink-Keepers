@@ -3,6 +3,10 @@
 export const addressMappings = {
   kovan: [
     {
+      name: "DOGEY",
+      address: "0x479379437y498y37983231298201091209209092",
+    },
+    {
       name: "ETHUSD",
       address: "0x9326bfa02add2366b30bacb125260af641031331",
     },
