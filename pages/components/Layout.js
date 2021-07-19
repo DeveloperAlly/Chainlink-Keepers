@@ -13,11 +13,18 @@ import {
   Icon,
 } from "semantic-ui-react";
 import web3 from "../api/web3";
+import useInterval from "../api/useInterval";
 
 //Hosts the top level layout of our app & also handles wallet connection.
 // const Layout = ({ walletConnected, ...props }) => {
 const Layout = ({ data, ...props }) => {
   const router = useRouter();
+  const [isVisibile, setIsVisible] = useState(true);
+
+  const REFRESH_INTERVAL = 10000;
+  useInterval(async () => {
+    setIsVisible(!isVisibile);
+  }, REFRESH_INTERVAL);
 
   const renderAdminButton = () => {
     return (
@@ -78,7 +85,15 @@ const Layout = ({ data, ...props }) => {
         <Container fluid>
           <Header as="h1" icon textAlign="center">
             {/* put transition on a loop */}
-            <Transition animation="tada" duration="1500" transitionOnMount>
+            <Transition
+              animation="tada"
+              duration="1500"
+              transitionOnMount
+              visible={isVisibile}
+              onComplete={() => {
+                setIsVisible(false);
+              }}
+            >
               <SImage src="/chainlink-logo.png" />
             </Transition>
             <Header.Content style={{ paddingTop: "20px" }}>
