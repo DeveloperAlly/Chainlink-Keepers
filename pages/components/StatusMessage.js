@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Message, Icon } from "semantic-ui-react";
 
 const StatusMessage = ({ status, ...props }) => {
-  const { error, success, warning, loading } = status;
   return (
     <>
       {status ? (
@@ -10,34 +9,38 @@ const StatusMessage = ({ status, ...props }) => {
           <Message
             compact
             icon
-            negative={Boolean(error)}
-            success={Boolean(success) && !Boolean(loading)}
-            info={Boolean(loading)}
-            warning={Boolean(warning)}
+            negative={Boolean(status.error)}
+            success={Boolean(status.success) && !Boolean(status.loading)}
+            info={Boolean(status.loading)}
+            warning={Boolean(status.warning)}
           >
             <Icon
               name={
-                loading
+                status.loading
                   ? "circle notched"
-                  : error
+                  : status.error
                   ? "times circle"
-                  : success
+                  : status.success
                   ? "check circle"
                   : "exclamation circle"
               }
-              loading={Boolean(loading)}
+              loading={Boolean(status.loading)}
             />
             <Message.Content>
-              {Boolean(success) && !Boolean(loading) && (
+              {Boolean(status.success) && !Boolean(status.loading) && (
                 <Message.Header>Transaction Success!</Message.Header>
               )}
-              {loading ? loading : error ? error : success ? success : warning}
+              {status.loading
+                ? status.loading
+                : status.error
+                ? status.error
+                : status.success
+                ? status.success
+                : status.warning}
             </Message.Content>
           </Message>
         </div>
-      ) : (
-        <div>Loading...</div>
-      )}
+      ) : null}
     </>
   );
 };
