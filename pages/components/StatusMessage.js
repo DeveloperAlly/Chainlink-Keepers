@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Message, Icon } from "semantic-ui-react";
 
 const StatusMessage = ({ status, ...props }) => {
   const { error, loading, warning, success } = status;
-  console.log("msg", error, loading, success);
   return (
     // <div style={{ width: "70%", justifyContent: "center" }}>
     <div>

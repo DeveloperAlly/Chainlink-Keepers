@@ -11,11 +11,7 @@ const Home = (props) => {
   //   console.log("Raffle", RaffleInterface);
   //   console.log("Initial Props", props);
 
-  return (
-    <Layout data={props}>
-      <Raffle data={props} />
-    </Layout>
-  );
+  return <Layout data={props}>{props && <Raffle data={props} />}</Layout>;
 };
 
 Home.getInitialProps = async () => {
