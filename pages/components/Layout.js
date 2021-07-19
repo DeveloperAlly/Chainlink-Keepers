@@ -90,12 +90,7 @@ const Layout = ({ data, ...props }) => {
         </Container>
       </main>
       <footer className={styles.footer}>
-        <a
-          href="https://docs.chain.link/"
-          target="_blank"
-          rel="noreferrer"
-          rel="noopener noreferrer"
-        >
+        <a href="https://docs.chain.link/" target="_blank" rel="noreferrer">
           <span className={styles.logo}>
             <Image
               src="/PoweredByChainlinkBlue.svg"
