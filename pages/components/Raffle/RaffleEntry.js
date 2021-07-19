@@ -28,7 +28,6 @@ const REQUIRED_NETWORK_CHAIN_ID = "0x2a";
 
 const RaffleEntry = ({ data, transactionState, setTransactionState }) => {
   const router = useRouter();
-  const { loading, error, success, warning } = transactionState;
   //   console.log("entrydata", data.playersEntered);
 
   const onRaffleEnter = async (event) => {
