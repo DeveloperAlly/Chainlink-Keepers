@@ -56,12 +56,16 @@ const RaffleWinnersList = ({ winnersRegistry }) => {
           <Table.HeaderCell>RoundID</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
-      <Table.Body>
-        {winnersRegistry.map((winner, idx) => {
-          return renderRows(winner, idx);
-        })}
-      </Table.Body>
-      <Table.Footer>{renderPagination()}</Table.Footer>
+      {winnersRegistry && (
+        <>
+          <Table.Body>
+            {winnersRegistry.map((winner, idx) => {
+              return renderRows(winner, idx);
+            })}
+          </Table.Body>
+          <Table.Footer>{renderPagination()}</Table.Footer>{" "}
+        </>
+      )}
     </Table>
   );
 };

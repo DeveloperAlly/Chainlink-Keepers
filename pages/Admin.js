@@ -236,10 +236,11 @@ const Admin = (props) => {
             </Row>
           </Body>
         </Table>
-        {JSON.stringify(transactionState) !==
-          JSON.stringify(INITIAL_TRANSACTION_STATE) && (
-          <StatusMessage status={transactionState} />
-        )}
+        {transactionState &&
+          JSON.stringify(transactionState) !==
+            JSON.stringify(INITIAL_TRANSACTION_STATE) && (
+            <StatusMessage status={transactionState} />
+          )}
       </Container>
     </Layout>
   );
