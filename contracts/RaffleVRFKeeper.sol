@@ -18,7 +18,7 @@ interface KeeperCompatibleInterface {
 * This contract runs in Remix with Kovan Network selected in wallet. Requires registering of a keeper (https://keeper.chain.link/) 
 * and sending LINK to the contract address (for VRF)
 */
-contract RaffleVRFKeepeV2 is VRFConsumerBase, KeeperCompatibleInterface {
+contract RaffleVRFKeeper is VRFConsumerBase, KeeperCompatibleInterface {
     address public contractAddress; //reference only
     address payable public manager; //contract owner
     uint public roundNumber; //the raffle round identifier

@@ -33,15 +33,14 @@ const RaffleInfo = ({ data }) => {
             data ? data.contractAddress : null
           )}
           target="_blank"
-          // header="Elliot Baker"
-          // meta="Friend"
-          // description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+          rel="noreferrer"
         />
         <Card
           style={{ boxShadow: "none", paddingBottom: 0 }}
           fluid
           href={`${process.env.NEXT_PUBLIC_ETHERSCAN_BASE}address/${data.manager}`}
           target="_blank"
+          rel="noreferrer"
           content={renderItem("Manager", data ? data.manager : null)}
         />
         <Card

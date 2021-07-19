@@ -1,11 +1,7 @@
-let Raffle = artifacts.require("../build/contracts/Raffle.sol");
-let RaffleVRF = artifacts.require("../build/contracts/RaffleVRF.sol");
-let RaffleVRFKeeper = artifacts.require(
-  "../build/contracts/RaffleVRFKeeper.sol"
-);
-let ChainlinkPriceFeed = artifacts.require(
-  "../build/contracts/ChainlinkPriceFeed.sol"
-);
+let Raffle = artifacts.require("./Raffle.sol");
+let RaffleVRF = artifacts.require("./RaffleVRF.sol");
+let RaffleVRFKeeper = artifacts.require("./RaffleVRFKeeper.sol");
+let ChainlinkPriceFeed = artifacts.require("./ChainlinkPriceFeed.sol");
 
 module.exports = function (deployer) {
   deployer.deploy(Raffle);

@@ -55,7 +55,7 @@ const Admin = (props) => {
                   <p>Winner: {res.to} </p>
                   <p>
                     See transaction:
-                    <a href={etherscanLink} target="_blank">
+                    <a href={etherscanLink} target="_blank" rel="noreferrer">
                       {etherscanLink}
                     </a>
                   </p>
@@ -104,7 +104,7 @@ const Admin = (props) => {
                   <p>New Entry Price: {entryCostInput} ETH </p>
                   <p>
                     See transaction:
-                    <a href={etherscanLink} target="_blank">
+                    <a href={etherscanLink} target="_blank" rel="noreferrer">
                       {etherscanLink}
                     </a>
                   </p>

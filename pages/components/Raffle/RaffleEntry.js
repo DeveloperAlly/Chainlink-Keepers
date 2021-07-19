@@ -67,7 +67,7 @@ const RaffleEntry = ({ data, transactionState, setTransactionState }) => {
             setTransactionState({
               ...INITIAL_TRANSACTION_STATE,
               success: (
-                <a href={etherscanLink} target="_blank">
+                <a href={etherscanLink} target="_blank" rel="noreferrer">
                   View the transaction on Etherscan
                 </a>
               ),

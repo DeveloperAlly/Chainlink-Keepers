@@ -25,7 +25,7 @@ contract ChainlinkPriceFeed {
      * Returns the latest price information from the asset address
      */
     function getLatestPrice(address assetAddress) public view returns 
-    (int price, uint80 roundID, int decimals, string memory description, uint timestamp) 
+    (int, uint80, int, string memory, uint ) 
     {
         AggregatorV3Interface priceFeed = AggregatorV3Interface(assetAddress);
         (            
@@ -38,6 +38,6 @@ contract ChainlinkPriceFeed {
         string memory description = priceFeed.description();
         int decimals = priceFeed.decimals();
 
-        return (price, roundID, decimals, description, timestamp);
+        return (price, roundID, decimals, description, timeStamp);
     }
 }

@@ -41,6 +41,7 @@ const Layout = ({ data, ...props }) => {
         as="a"
         href="https://metamask.io/download.html"
         target="_blank"
+        rel="noreferrer"
         basic
         color="blue"
         size="large"
@@ -92,6 +93,7 @@ const Layout = ({ data, ...props }) => {
         <a
           href="https://docs.chain.link/"
           target="_blank"
+          rel="noreferrer"
           rel="noopener noreferrer"
         >
           <span className={styles.logo}>
