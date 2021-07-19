@@ -14,17 +14,11 @@ import {
   Icon,
 } from "semantic-ui-react";
 import web3 from "../api/web3";
-import useInterval from "../api/utils/useInterval";
 
 //Hosts the top level layout of our app & also handles wallet connection.
 // const Layout = ({ walletConnected, ...props }) => {
 const Layout = ({ data, ...props }) => {
   const router = useRouter();
-
-  const REFRESH_INTERVAL = 5000;
-  useInterval(async () => {
-    router.push("/"); //refresh the data every 5 seconds
-  }, REFRESH_INTERVAL);
 
   const renderAdminButton = () => {
     return (

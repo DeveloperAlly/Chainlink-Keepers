@@ -3,6 +3,8 @@ import RaffleWinnersList from "./RaffleWinnersList";
 import RaffleEntry from "./RaffleEntry";
 import RaffleInfo from "./RaffleInfo";
 import { Container, Divider, Header } from "semantic-ui-react";
+import useInterval from "../../api/utils/useInterval";
+import { useRouter } from "next/router";
 
 const INITIAL_TRANSACTION_STATE = {
   loading: "",
@@ -12,9 +14,15 @@ const INITIAL_TRANSACTION_STATE = {
 };
 
 const Raffle = ({ data, ...props }) => {
+  const router = useRouter();
   const [transactionState, setTransactionState] = useState(
     INITIAL_TRANSACTION_STATE
   );
+
+  const REFRESH_INTERVAL = 5000;
+  useInterval(async () => {
+    router.push("/"); //refresh the data every 5 seconds
+  }, REFRESH_INTERVAL);
 
   return (
     <div>
