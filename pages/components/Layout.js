@@ -3,15 +3,67 @@ import { Container } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import Image from "next/image";
 import Head from "next/head";
-import Marquee from "react-fast-marquee";
+import PriceMarquee from "./PriceMarquee";
 import styles from "../../styles/Home.module.css";
-import { Transition, Header, Image as SImage } from "semantic-ui-react";
-import RaffleInfo from "./Raffle/RaffleInfo";
+import { useRouter } from "next/router";
+import {
+  Transition,
+  Header,
+  Image as SImage,
+  Button,
+  Icon,
+} from "semantic-ui-react";
+import web3 from "../api/web3";
+import useInterval from "../api/utils/useInterval";
 
 //Hosts the top level layout of our app & also handles wallet connection.
 // const Layout = ({ walletConnected, ...props }) => {
-const Layout = (props, { data }) => {
-  console.log("layout", props);
+const Layout = ({ data, ...props }) => {
+  const router = useRouter();
+
+  const REFRESH_INTERVAL = 5000;
+  useInterval(async () => {
+    router.push("/"); //refresh the data every 5 seconds
+  }, REFRESH_INTERVAL);
+
+  const renderAdminButton = () => {
+    return (
+      <Button
+        basic
+        color="blue"
+        icon
+        size="large"
+        onClick={() => router.push("/Admin")}
+      >
+        {"Admin Page   "}
+        <Icon name="cog" />
+      </Button>
+    );
+  };
+
+  const renderConnectWallet = () => {
+    return (
+      <Button
+        as="a"
+        href="https://metamask.io/download.html"
+        target="_blank"
+        basic
+        color="blue"
+        size="large"
+      >
+        Install Metamask! 🦊
+      </Button>
+    );
+  };
+
+  const renderConnectedButton = () => {
+    return (
+      <Button basic color="blue" size="large" onClick={() => router.push("/")}>
+        Connected
+      </Button>
+    );
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,31 +72,28 @@ const Layout = (props, { data }) => {
         <link rel="icon" href="/chainlink-logo.png" />
       </Head>
       <main className={styles.main}>
-        <Container fluid style={{ paddingTop: "30px" }}>
-          {/* <Header walletConnected={walletConnected} /> */}
-          {/* <Header size="large" fluid /> */}
+        <Container
+          fluid
+          textAlign="right"
+          style={{ paddingTop: "10px", paddingRight: "30px" }}
+        >
+          {web3.currentProvider.host
+            ? renderConnectWallet()
+            : renderConnectedButton()}
+        </Container>
+        <Container fluid>
           <Header as="h1" icon textAlign="center">
             {/* put transition on a loop */}
             <Transition animation="tada" duration="1500" transitionOnMount>
               <SImage src="/chainlink-logo.png" />
             </Transition>
             <Header.Content style={{ paddingTop: "20px" }}>
-              Chainlink Raffle
+              Chainlink Testnet Raffle
             </Header.Content>
           </Header>
           {props.children}
         </Container>
       </main>
-      <Marquee
-        style={{
-          height: "40px",
-          borderTop: "1px solid lightgrey",
-          padding: "5px 0",
-          position: "initial",
-        }}
-      >
-        <p>My scrolling price feed</p>
-      </Marquee>
       <footer className={styles.footer}>
         <a
           href="https://docs.chain.link/"
@@ -61,6 +110,7 @@ const Layout = (props, { data }) => {
           </span>
         </a>
       </footer>
+      {/* <PriceMarquee /> */}
     </div>
   );
 };

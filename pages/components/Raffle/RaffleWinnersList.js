@@ -3,12 +3,10 @@ import { Icon, Label, Menu, Table } from "semantic-ui-react";
 import web3 from "../../api/web3";
 
 const RaffleWinnersList = ({ winnersRegistry }) => {
-  console.log("winners", winnersRegistry);
-  const renderRows = (winner) => {
-    console.log("render", winner[0]);
+  const renderRows = (winner, idx) => {
     return (
       <>
-        <Table.Row>
+        <Table.Row key={idx}>
           <Table.Cell>{winner[0]}</Table.Cell>
           <Table.Cell>{web3.utils.fromWei(winner[1], "ether")} ETH</Table.Cell>
           <Table.Cell>{winner[2]}</Table.Cell>
@@ -17,7 +15,13 @@ const RaffleWinnersList = ({ winnersRegistry }) => {
     );
   };
 
+  //TODO: working pagination
   const renderPagination = () => {
+    const length = winnersRegistry.length / 10 + 1;
+    var nums = [];
+    for (let i = 1; i < length; i++) {
+      nums.push(i);
+    }
     return (
       <>
         <Table.Row>
@@ -26,10 +30,13 @@ const RaffleWinnersList = ({ winnersRegistry }) => {
               <Menu.Item as="a" icon>
                 <Icon name="chevron left" />
               </Menu.Item>
-              <Menu.Item as="a">1</Menu.Item>
-              <Menu.Item as="a">2</Menu.Item>
-              <Menu.Item as="a">3</Menu.Item>
-              <Menu.Item as="a">4</Menu.Item>
+              {nums.map((n) => {
+                return (
+                  <Menu.Item as="a" key={n}>
+                    {n}
+                  </Menu.Item>
+                );
+              })}
               <Menu.Item as="a" icon>
                 <Icon name="chevron right" />
               </Menu.Item>
@@ -50,12 +57,11 @@ const RaffleWinnersList = ({ winnersRegistry }) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {winnersRegistry.map((winner) => {
-          console.log("one winn", winner);
-          return renderRows(winner);
+        {winnersRegistry.map((winner, idx) => {
+          return renderRows(winner, idx);
         })}
       </Table.Body>
-      {/* <Table.Footer>{renderPagination()}</Table.Footer> */}
+      <Table.Footer>{renderPagination()}</Table.Footer>
     </Table>
   );
 };

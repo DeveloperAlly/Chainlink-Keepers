@@ -23,12 +23,13 @@ const INITIAL_TRANSACTION_STATE = {
   warning: "",
 };
 
-const REQUIRED_NETWORK_CHAIN_ID = 42;
+const REQUIRED_NETWORK_CHAIN_ID = "0x2a";
+//or networkVersion="42"
 
 const RaffleEntry = ({ data, transactionState, setTransactionState }) => {
   const router = useRouter();
   const { loading, error, success, warning } = transactionState;
-  console.log("entrydata", data.playersEntered);
+  //   console.log("entrydata", data.playersEntered);
 
   const onRaffleEnter = async (event) => {
     setTransactionState(INITIAL_TRANSACTION_STATE);
@@ -61,8 +62,8 @@ const RaffleEntry = ({ data, transactionState, setTransactionState }) => {
             value: data.entryCost, //web3.utils.toWei(entryValue, "ether"),
           })
           .then((res) => {
-            console.log("res", res);
-            const etherscanLink = `https://kovan.etherscan.io/tx/${res.transactionHash}`;
+            // console.log("res", res);
+            const etherscanLink = `${process.env.NEXT_PUBLIC_ETHERSCAN_BASE}tx/${res.transactionHash}`;
             setTransactionState({
               ...INITIAL_TRANSACTION_STATE,
               success: (
@@ -125,18 +126,54 @@ const RaffleEntry = ({ data, transactionState, setTransactionState }) => {
         </Grid.Column>
         <Grid.Column width={2} />
         <Grid.Column width={6}>
-          <Card as="a" onClick={onRaffleEnter}>
-            <Card.Content>
-              <Image floated="right" size="mini" src="/chainlink-logo.png" />
-              <Card.Header>Click to Enter!</Card.Header>
-              <Card.Meta>
-                Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
-              </Card.Meta>
-              {/* <Card.Description>
-              Jenny requested permission to view your contact details
-            </Card.Description> */}
-            </Card.Content>
-          </Card>
+          {web3.currentProvider.host ? (
+            <Card>
+              <Card.Content>
+                <Image floated="right" size="mini" src="/chainlink-logo.png" />
+                <Card.Header>Connect a wallet! </Card.Header>
+                <Card.Meta>
+                  Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
+                </Card.Meta>
+                <Card.Description>
+                  You need to connect a wallet to enter this raffle!
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          ) : data.playersEntered.length >= data.maxEntrants ? (
+            <Card>
+              <Card.Content>
+                <Image floated="right" size="mini" src="/chainlink-logo.png" />
+                <Card.Header>Sorry! Entry Closed</Card.Header>
+                <Card.Meta>
+                  Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
+                </Card.Meta>
+                <Card.Description>
+                  Max number of players for this round already reached. Try next
+                  round!
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          ) : (
+            <>
+              <Card
+                as="a"
+                onClick={onRaffleEnter}
+                disabled={Boolean(transactionState.loading)}
+              >
+                <Card.Content>
+                  <Image
+                    floated="right"
+                    size="mini"
+                    src="/chainlink-logo.png"
+                  />
+                  <Card.Header>Click to Enter!</Card.Header>
+                  <Card.Meta>
+                    Entry Cost: {web3.utils.fromWei(data.entryCost)} ETH
+                  </Card.Meta>
+                </Card.Content>
+              </Card>
+            </>
+          )}
         </Grid.Column>
       </Grid>
 

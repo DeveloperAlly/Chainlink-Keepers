@@ -3,7 +3,7 @@ import { Card, Header, Divider } from "semantic-ui-react";
 import web3 from "../../api/web3";
 
 const RaffleInfo = ({ data }) => {
-  console.log("info", data);
+  //   console.log("info", data);
   const renderItem = (header, value) => {
     return (
       <div
@@ -27,11 +27,12 @@ const RaffleInfo = ({ data }) => {
         <Card
           style={{ boxShadow: "none", paddingBottom: 0 }}
           fluid
-          href="#card-example-link-card"
+          href={`${process.env.NEXT_PUBLIC_ETHERSCAN_BASE}address/${data.contractAddress}`}
           content={renderItem(
             "Contract Address",
             data ? data.contractAddress : null
           )}
+          target="_blank"
           // header="Elliot Baker"
           // meta="Friend"
           // description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
@@ -39,19 +40,18 @@ const RaffleInfo = ({ data }) => {
         <Card
           style={{ boxShadow: "none", paddingBottom: 0 }}
           fluid
-          href="#card-example-link-card"
+          href={`${process.env.NEXT_PUBLIC_ETHERSCAN_BASE}address/${data.manager}`}
+          target="_blank"
           content={renderItem("Manager", data ? data.manager : null)}
         />
         <Card
           style={{ boxShadow: "none", paddingBottom: 0 }}
           fluid
-          href="#card-example-link-card"
           content={renderItem("Prize Pool", data ? data.prizePool : null)}
         />
         <Card
           style={{ boxShadow: "none", paddingBottom: 0 }}
           fluid
-          href="#card-example-link-card"
           content={renderItem("Round Number", data ? data.roundNumber : null)}
         />
         <Divider />

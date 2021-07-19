@@ -7,6 +7,7 @@ import {
   Button,
   Input,
   Label,
+  Icon,
 } from "semantic-ui-react";
 import web3 from "./api/web3";
 import RaffleInterface from "./api/contracts/RaffleVRFKeeperInterface";
@@ -28,6 +29,7 @@ const Admin = (props) => {
   const [transactionState, setTransactionState] = useState(
     INITIAL_TRANSACTION_STATE
   );
+  const [entryCostInput, setEntryCostInput] = useState();
 
   const pickWinner = async () => {
     await web3.eth
@@ -44,7 +46,7 @@ const Admin = (props) => {
           })
           .then((res) => {
             console.log(res);
-            const etherscanLink = `https://kovan.etherscan.io/tx/${res.transactionHash}`;
+            const etherscanLink = `${process.env.NEXT_PUBLIC_ETHERSCAN_BASE}/tx/${res.transactionHash}`;
             setTransactionState({
               ...INITIAL_TRANSACTION_STATE,
               success: (
@@ -78,10 +80,69 @@ const Admin = (props) => {
       );
   };
 
+  const setEntryCost = async () => {
+    await web3.eth
+      .getAccounts()
+      .then(async (accounts) => {
+        setTransactionState({
+          ...INITIAL_TRANSACTION_STATE,
+          loading: "Transaction is processing....",
+        });
+        await RaffleInterface.methods
+          .setEntryCost(web3.utils.toWei(entryCostInput, "ether"))
+          .send({
+            from: accounts[0],
+          })
+          .then((res) => {
+            console.log(res);
+            const etherscanLink = `${process.env.NEXT_PUBLIC_ETHERSCAN_BASE}tx/${res.transactionHash}`;
+            setTransactionState({
+              ...INITIAL_TRANSACTION_STATE,
+              success: (
+                <>
+                  <p>Entry Cost has been changed! </p>
+                  <p>New Entry Price: {entryCostInput} ETH </p>
+                  <p>
+                    See transaction:
+                    <a href={etherscanLink} target="_blank">
+                      {etherscanLink}
+                    </a>
+                  </p>
+                </>
+              ),
+            });
+            // fetchData();
+            setEntryCostInput(null);
+            router.replace(`/Admin`);
+          })
+          .catch((err) =>
+            setTransactionState({
+              ...INITIAL_TRANSACTION_STATE,
+              error: err.message || "Uknown Error occurred",
+            })
+          );
+      })
+      .catch((err) =>
+        setTransactionState({
+          ...INITIAL_TRANSACTION_STATE,
+          error: `Error: ${err.message || "Could not fetch accounts"}`,
+        })
+      );
+  };
+
   return (
     <Layout data={props}>
       <Container textAlign="center">
         <Header>Admin Functions </Header>
+        <Button
+          style={{ backgroundColor: "royalblue", color: "white" }}
+          icon
+          size="large"
+          onClick={() => router.push("/")}
+        >
+          {"Home    "}
+          <Icon name="home" color="white" />
+        </Button>
         <Table celled>
           <Table.Header>
             <Row textalign="right">
@@ -137,11 +198,18 @@ const Admin = (props) => {
               <Cell textAlign="center">
                 <Input placeholder="Entry cost in Eth" labelPosition="right">
                   <Label>ETH</Label>
-                  <input />
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.001"
+                    value={entryCostInput}
+                    onChange={(event) => setEntryCostInput(event.target.value)}
+                  />
                   <Button
                     basic
                     color="green"
                     disabled={Boolean(transactionState.loading)}
+                    onClick={() => setEntryCost()}
                   >
                     Confirm
                   </Button>
