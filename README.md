@@ -12,6 +12,7 @@ The Raffle Contract uses [Chainlink VRF](https://docs.chain.link/docs/chainlink-
 
 The frontend uses Next JS, React and Web3 to interact with the blockchain contracts.
 
+This project was built for a presentation so you can take a gander (look at) the presnetation slides used [here](https://docs.google.com/presentation/d/1lNE8R9CvSRomTGYS6cXjlLKhQviQxbrCVwVcDzQCxqc/edit?usp=sharing)
 
 ## **Framework**
 
