@@ -32,7 +32,7 @@ The frontend uses Next JS, React and Web3 to interact with the blockchain contra
 
 > npm install -g truffle
 
-Test Link & Kovan Tokens 
+Kovan Testnet Link & Eth Tokens 
 [Faucet](https://linkfaucet.protofire.io/kovan)
 
 ## **Running the App**
