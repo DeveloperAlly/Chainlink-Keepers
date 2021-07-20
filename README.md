@@ -45,7 +45,8 @@ Kovan Testnet Link & Eth Tokens
 7. Add the deployed contract addresses to the .env file
 8. Add Link to the contract (to pay for VRF transactions) - 1 Link is enough for 10 rounds
 9. Register the app for Chainlink Keepers [here](https://keeper.chain.link)
-10. Run the front end from the develop branch in root folder `npm run dev`
+10. Install npm dependencies from the develop branch in root folder `npm install`
+11. Run the front end from the develop branch in root folder `npm run dev`
 12. Navigate to [http://localhost:3000](http://localhost:3000/) to see the app in action
 
 
@@ -55,44 +56,6 @@ Kovan Testnet Link & Eth Tokens
 - Add Autofill of Link to the Keeper function (for both the Keeper upkeep and the VRF contract upkeep)
 
 ## See the Next-js docs below
-
-
-## Project dependencies
-
-Install Truffle globally
-Install Node
-Create an Infura Account & Project
-Install Metamask & fund with test ETH & LINK (Kovan network)
-
-## Project framework
-
-Chainlink VRF and Chainlink Keepers
-Next.js & react frontend
-
-## Dependencies
-
-dotenv
-chainlink
-
-## Making this project
-
-> npx creat-next-app
-> cd [name of project]
-> truffle init
-> (contracts) npm install dotenv @truffle/hdwallet-provider @chainlink/contracts
-> (frontend) npm install web3
-> (testing) npm install mocha
-> make .env file
-> truffle.config setup
-> Fund your wallet (contract deployer) with test eth and link (link to rinkeby and kovan faucets)
-> create your contracts
-> create your migration file in /migrations/2_deploy_migrations.js
-> compile your contract > truffle compile
-> Deploy your contracts > truffle migrate --network kovan
-> Put deployed address in .env file
-> Register with Chainlink Keeper Network (https://docs.chain.link/docs/chainlink-keepers/register-upkeep/)
-> Frontend config web3 provider -> create web3.js under pages/api
-> Create ChainlinkKeeper.js under pages/api
 
 ## Running this project
 
@@ -134,6 +97,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Making this project from Scratch
+
+> npx creat-next-app
+> cd [name of project]
+> truffle init
+> (contracts) npm install dotenv @truffle/hdwallet-provider @chainlink/contracts
+> (frontend) npm install web3
+> (testing) npm install mocha
+> make .env file
+> truffle.config setup
+> Fund your wallet (contract deployer) with test eth and link (link to rinkeby and kovan faucets)
+> create your contracts
+> create your migration file in /migrations/2_deploy_migrations.js
+> compile your contract > truffle compile
+> Deploy your contracts > truffle migrate --network kovan
+> Put deployed address in .env file
+> Register with Chainlink Keeper Network (https://docs.chain.link/docs/chainlink-keepers/register-upkeep/)
+> Frontend config web3 provider -> create web3.js under pages/api
+> Create ChainlinkKeeper.js under pages/api
 
 ## Project Blogposts
 
