@@ -54,6 +54,7 @@ Kovan Testnet Link & Eth Tokens
 
 - Fix front end quirks
 - Add Autofill of Link to the Keeper function (for both the Keeper upkeep and the VRF contract upkeep)
+- Clear messages after time elapsed (would prefer a toast module tbh)
 
 
 
