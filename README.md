@@ -12,7 +12,7 @@ The Raffle Contract uses [Chainlink VRF](https://docs.chain.link/docs/chainlink-
 
 The frontend uses Next JS, React and Web3 to interact with the blockchain contracts.
 
-This project was built for a presentation so you can take a gander (look at) the presnetation slides used [here](https://docs.google.com/presentation/d/1lNE8R9CvSRomTGYS6cXjlLKhQviQxbrCVwVcDzQCxqc/edit?usp=sharing)
+This project was built for a presentation so you can take a gander (look at) the presentation slides used [here](https://docs.google.com/presentation/d/1lNE8R9CvSRomTGYS6cXjlLKhQviQxbrCVwVcDzQCxqc/edit?usp=sharing)
 
 ## **Framework**
 
@@ -46,7 +46,6 @@ Kovan Testnet Link & Eth Tokens
 7. Add the deployed contract addresses to the .env file
 8. Add Link to the contract (to pay for VRF transactions) - 1 Link is enough for 10 rounds
 9. Register the app for Chainlink Keepers [here](https://keeper.chain.link)
-10. Install npm dependencies from the develop branch in root folder `npm install`
 11. Run the front end from the develop branch in root folder `npm run dev`
 12. Navigate to [http://localhost:3000](http://localhost:3000/) to see the app in action
 
