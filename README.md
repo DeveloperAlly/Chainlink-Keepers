@@ -55,13 +55,9 @@ Kovan Testnet Link & Eth Tokens
 - Fix front end quirks
 - Add Autofill of Link to the Keeper function (for both the Keeper upkeep and the VRF contract upkeep)
 
-## See the Next-js docs below
 
-## Running this project
 
-install dependencies > npm install
-
-## Next.js documentation
+## Next.js documentation 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
