@@ -16,6 +16,7 @@
   flex-direction: column;
   width: 100vw;
   overflow-y: auto;
+  overflow-x: hidden;
   /* justify-content: center;
   align-items: center; */
 }
