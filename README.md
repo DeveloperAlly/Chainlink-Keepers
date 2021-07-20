@@ -37,7 +37,7 @@ Kovan Testnet Link & Eth Tokens
 
 ## **Running the App**
 
-1. Clone the repo `git clone ` - NB: USE THE DEVELOP BRANCH FOR TESTING > git checkout develop
+1. Clone the repo `git clone https://github.com/DeveloperAlly/Chainlink-Keepers.git` - NB: USE THE DEVELOP BRANCH FOR TESTING > git checkout develop
 2. Create a .env file `> touch .env`
 3. Fill in the .env file with the Infura address and the Metamask seed phrase (as per the .example.env file)
 4. Install dependencies `npm install`
