@@ -1,5 +1,5 @@
 import web3 from "../web3";
-import ChainlinkPriceFeed from "../build/contracts/ChainlinkPriceFeed.json";
+import ChainlinkPriceFeed from "../../../build/contracts/ChainlinkPriceFeed.json";
 
 const address =
   process.env.NEXT_PUBLIC_DEPLOYED_CONTRACT_ADDRESS_KOVAN_PRICEFEED;
