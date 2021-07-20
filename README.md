@@ -1,8 +1,60 @@
 ## See this project live
 
-[Live version](https://chainlink-keepers.vercel.app/)
+[Live Kovan testnet version click here](https://chainlink-keepers.vercel.app/)
 
 ![Screen Shot 2021-07-20 at 1 08 25 am](https://user-images.githubusercontent.com/12529822/126182827-65c9d801-e597-450b-afbc-c3783ff99064.png)
+
+## Details
+This app builds and deploys 2 solidity contracts - one is used for the pricefeed ticker displayed at the bottom of the page. The other is a raffle 'lottery' (A raffle is a competition in which people buy tickets, each of which has the chance of winning a prize. At a set condition or time, the winner(s) are drawn at random).
+
+The PriceFeed contract uses [Chainlink Price Feeds](https://docs.chain.link/docs/using-chainlink-reference-contracts/) to get the latest price of an asset.
+The Raffle Contract uses [Chainlink VRF](https://docs.chain.link/docs/chainlink-vrf/) for a verifiably random winner draw. It also uses [Chainlink Keepers](https://docs.chain.link/docs/chainlink-keepers/introduction/) to tigger an automatic draw once a set number of players has been reached (default is 3).
+
+The frontend uses Next JS, React and Web3 to interact with the blockchain contracts.
+
+
+## **Framework**
+
+**Contracts**: [Truffle](https://www.trufflesuite.com/truffle), Solidity, [Infura](https://infura.io/), [Metamask](https://docs.metamask.io/guide/), [Chainlink](https://docs.chain.link/docs)
+
+**Front-end**: React, [Next](https://nextjs.org/) (routing, SSR), [Web3](https://web3js.readthedocs.io/en/v1.3.4/).
+
+**Other npm libs**: @truffle/hdwallet-provider, dotenv
+
+## **Requirements/Dependencies**
+[Node js](https://nodejs.org/en/). 
+
+[Infura Account](https://infura.io/register) => [Set up guide](https://blog.infura.io/getting-started-with-infura-28e41844cc89/). 
+
+[Metamask Wallet](https://metamask.io/) => NB: USE A FRESH WALLET WITH NO REAL VALUABLE ASSETS ON IT (test only) AND KEEP YOUR SEED PHRASE HANDY (we need this to deploy the solidity contracts). 
+
+[Truffle](https://www.trufflesuite.com/truffle) => install using npm command. 
+
+> npm install -g truffle
+
+Test Link & Kovan Tokens 
+[Faucet](https://linkfaucet.protofire.io/kovan)
+
+## **Running the App**
+
+1. Clone the repo `git clone ` - NB: USE THE DEVELOP BRANCH FOR TESTING > git checkout develop
+2. Create a .env file `> touch .env`
+3. Fill in the .env file with the Infura address and the Metamask seed phrase (as per the .example.env file)
+4. Install dependencies `npm install`
+5. Deploy the contracts `truffle migrate --network kovan`
+7. Add the deployed contract addresses to the .env file
+8. Add Link to the contract (to pay for VRF transactions) - 1 Link is enough for 10 rounds
+9. Register the app for Chainlink Keepers [here](https://keeper.chain.link)
+10. Run the front end from the develop branch in root folder `npm run dev`
+12. Navigate to [http://localhost:3000](http://localhost:3000/) to see the app in action
+
+
+## **To Do**
+
+- Fix front end quirks
+- Add Autofill of Link to the Keeper function (for both the Keeper upkeep and the VRF contract upkeep)
+
+## See the Next-js docs below
 
 
 ## Project dependencies
