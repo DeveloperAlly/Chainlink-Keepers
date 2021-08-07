@@ -37,6 +37,8 @@ Kovan Testnet Link & Eth Tokens
 [Faucet](https://linkfaucet.protofire.io/kovan)
 
 ## **Running the App**
+NB: USE THE DEVELOP BRANCH FOR TESTING > git checkout develop
+The Main branch has some features specifically for deployment to vercel
 
 1. Clone the repo `git clone https://github.com/DeveloperAlly/Chainlink-Keepers.git` - NB: USE THE DEVELOP BRANCH FOR TESTING > git checkout develop
 2. Create a .env file `> touch .env`
