@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.6.7;
+pragma solidity ^0.6.7;
 pragma experimental ABIEncoderV2;
 
 //To run on remix use Injected Web3 with Metamask on Rinkeby network activated

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.6.7;
+pragma solidity ^0.6.7;
 pragma experimental ABIEncoderV2;
 
-contract Raffle {
+contract RaffleTest {
     address public contractAddress; //reference only
     uint public roundNumber; //the raffle round identifier
     uint public entryCost; //cost to enter the raffle in wei (have a setter for the admin)
