@@ -1,6 +1,8 @@
 ## See this project live
 
-[Live Kovan testnet version hosted on IPFS & Filecoin - fully decentralised](https://throbbing-rice-7137.on.fleek.co/)!!!! check out fleek.co
+Live & decentralised on Fleek.co(!!!):
+
+[Live Kovan testnet version hosted on IPFS & Filecoin click here](https://throbbing-rice-7137.on.fleek.co/)
 
 [Live Kovan testnet version click here](https://chainlink-keepers.vercel.app/)
 
