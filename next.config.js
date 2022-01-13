@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    loader: 'akami',
+    loader: 'akamai',
     path: '/',
   },
 }
