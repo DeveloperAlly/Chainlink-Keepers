@@ -1,9 +1,11 @@
 ## See this project live
 
-[Live Kovan testnet version hosted on IPFS & Filecoin - fully decentralised][(https://throbbing-rice-7137.on.fleek.co/)]!!!! check out fleek.co
+[Live Kovan testnet version hosted on IPFS & Filecoin - fully decentralised](https://throbbing-rice-7137.on.fleek.co/)!!!! check out fleek.co
 [Live Kovan testnet version click here](https://chainlink-keepers.vercel.app/)
 
 ![Screen Shot 2021-07-20 at 1 08 25 am](https://user-images.githubusercontent.com/12529822/126182827-65c9d801-e597-450b-afbc-c3783ff99064.png)
+
+NB: There is some bug with the Keeper. I'm not sure what - it's probably updated how they work since I created this contract
 
 ## Details
 This app builds and deploys 2 solidity contracts - one is used for the pricefeed ticker displayed at the bottom of the page. The other is a raffle 'lottery' (A raffle is a competition in which people buy tickets, each of which has the chance of winning a prize. At a set condition or time, the winner(s) are drawn at random).
